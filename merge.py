@@ -1,14 +1,11 @@
 import pandas as pd
-from analisis import limpiar_cursos, limpiar_usuarios, pacientes_limpio, medicos_limpio, prescripciones_limpio
-
-# ─────────────────────────────────────────────
-# Carga de DataFrames limpios
-# ─────────────────────────────────────────
-usuarios = limpiar_usuarios()
-cursos = limpiar_cursos()
+from carga import get_cursos, get_usuarios
+from analisis import limpiar_cursos, limpiar_usuarios
 
 
 def usuarios_con_cursos() -> pd.DataFrame:
+    usuarios = limpiar_usuarios(get_usuarios())
+    cursos = limpiar_cursos(get_cursos())
     return pd.merge(
         usuarios,
         cursos,
